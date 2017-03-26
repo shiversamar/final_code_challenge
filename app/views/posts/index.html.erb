@@ -1,0 +1,16 @@
+
+<% @posts.each do |post| %>
+      <div class="col-md-4">
+        <div class="message">
+          <h2 class="message-title"><%= post.title %></h2>
+          <p id="author">Author:</p>
+
+          <%= link_to "View Post", post_path(post), class: "btn btn-info" %>
+        </div>
+      </div>
+  <% end %>
+
+          <br>
+          <br>
+
+    <%= link_to "New Post", new_post_path, class: "btn btn-success" %>
