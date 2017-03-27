@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :find_post, only: [:create, :edit, :update, :destroy]
+  before_action :find_post
   before_action :find_comment, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  # before_action :find_post, only:[:create, :edit, :update, :destroy]
 
   def create
     # creates a comment with respect to the message
@@ -13,6 +15,8 @@ class CommentsController < ApplicationController
         render 'new'
       end
   end
+
+
 
 
   def edit
@@ -35,7 +39,7 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:content)
+      params.require(:comment).permit(:body)
     end
 
     def find_post

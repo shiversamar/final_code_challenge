@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
 
 
   def index
@@ -10,15 +10,18 @@ class PostsController < ApplicationController
   def show
   end
 
-  # build post to current_user that associated
+  # incrementing the database for new Post new cause i've started with out Author (user_id)
 
   def new
-    @post = Post.new(post_params)
+    @post = current_user.posts.build
+    # @post = Post.new(post_params)
   end
 
 
+
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
+    # @post = Post.new(post_params)
     if @post.save
       redirect_to root_path
     else
@@ -28,6 +31,7 @@ class PostsController < ApplicationController
 
 
   def edit
+    @post = Post.find(params[:id])
   end
 
 
