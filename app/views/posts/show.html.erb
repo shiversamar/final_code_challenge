@@ -1,6 +1,26 @@
-<h2><%= @post.title %></h2>
-	  <p><%= @post.body %></p>
+<div class="col-md-8 col-md-offset-2">
+	<div class="message-show">
+		<h2><%= @post.title %></h2>
+		<p class="message-posted-by">Posted by <%= @post.user.email %> <%= time_ago_in_words(@post.created_at) %> ago</p>
+		<p class="message-desc"><%= @post.body %></p>
+		<!-- Add a Posted By: username at timestamp. -->
 
-<%= link_to "Back", root_path, class: "btn btn-info" %>
-<%= link_to "Edit", edit_post_path(@post), class: "btn btn-info" %>
-<%= link_to "Delete", post_path(@post), method: :delete, data: { confirm:"Are You Sure?" }, class: "btn btn-info" %>
+		<h3 class="comment-section-header">Comments:</h3>
+		<!-- renders the _comment.html.erb partial file. -->
+		<p><%= render @post.comments %></p>
+
+		<h3 class="reply-to-msg">Reply to Message:</h3>
+		<!-- renders the comments form -->
+		<%= render 'comments/form' %>
+
+
+		<!-- Add a conditional so that the 'edit' and 'destroy' links only appear for the user who created the message. -->
+		<div class="links btn-group">
+			<%= link_to "Back", root_path, class: "btn btn-default" %>
+			<% if @post.user_id == current_user.id %>
+				<%= link_to "Edit", edit_post_path(@post), class: "btn btn-default" %>
+				<%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+			<% end %>
+		</div>
+	</div>
+</div>

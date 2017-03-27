@@ -10,17 +10,19 @@ class PostsController < ApplicationController
   def show
   end
 
+  # build post to current_user that associated
 
   def new
-    @post = Post.new
+    @post = Post.new(post_params)
   end
 
 
   def create
     @post = Post.new(post_params)
     if @post.save
-    else
       redirect_to root_path
+    else
+      render 'new'
     end
   end
 
@@ -29,29 +31,19 @@ class PostsController < ApplicationController
   end
 
 
-  def destroy
-  @post.destroy
-  redirect_to root_path
-  end
-
-
-
   def update
     if @post.update(post_params)
       redirect_to post_path
-
     else
       render 'new'
     end
   end
 
 
-
-
-
-
-
-
+  def destroy
+  @post.destroy
+  redirect_to root_path
+  end
 
 
 
