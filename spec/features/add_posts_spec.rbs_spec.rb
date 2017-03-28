@@ -6,8 +6,8 @@ RSpec.feature "adding posts" do
 
     visit new_post_path
 
-    fill_in "Title", with: "First Title"
-    fill_in "Body", with: "First Body"
+    fill_in "title", with: "First Title"
+    fill_in "body", with: "First Body"
 
     click_on("Create Post")
 

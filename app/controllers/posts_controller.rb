@@ -5,8 +5,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order("created_at DESC").paginate(page:params[:page],per_page:5)
-    # @user = @post.current_user.posts.build
-    # @user = @post.users.find(params[:id])
+
+    @user = User.find_by_id(params[:id])
+    # @user = current_user.posts.build(params[:id])
   end
 
   def show

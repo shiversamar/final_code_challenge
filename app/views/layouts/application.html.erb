@@ -14,7 +14,7 @@
     			<div class="navbar-header">
       				<% if current_page?(root_path) %>
                   <ul>
-                    <li class: "navbar-brand">Message Board</li>
+                    <li class:"navbar-brand">Message Board</li>
                   </ul>
                <% else %>
                    <%= link_to "Back to All Posts", root_path %>
@@ -29,11 +29,9 @@
         					<li><%= link_to "Log In", new_user_session_path %></li>
         				<% end %>
         			</ul>
-
-
-    			<% if user_signed_in? %>
-    				<p><%= link_to "New Post", new_post_path, class: "navbar-text navbar-link navbar-right" %></p>
-    			<% end %>
+          			<% if user_signed_in? %>
+          				<p><%= link_to "New Post", new_post_path, class: "navbar-text navbar-link navbar-right" %></p>
+          			<% end %>
     		</div>
     	</nav>
 
