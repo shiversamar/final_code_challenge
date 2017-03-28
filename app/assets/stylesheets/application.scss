@@ -1,4 +1,5 @@
 
+@import url(http://fonts.googleapis.com/css?family=Playfair+Display|Muli:300,400);
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -16,7 +17,10 @@ h1, h2, h3, h4, h5, h6 {
 
 #author {
 	color: red;
-	font-size: 14px;
+	font-size: 13px;
+	font-family: 'Muli', sans-serif;
+	font-weight: 300;
+
 
 }
 
@@ -94,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {
 	border-bottom: 4px solid #0a8fd5;
 
 	.message-title {
-		font-size: 1.5em;
+		font-size: 1.0em;
 		font-family: 'Muli', sans-serif;
 		font-weight: 300;
 		margin-top: 0;
@@ -168,4 +172,17 @@ h1, h2, h3, h4, h5, h6 {
 			margin-right: 15px;
 		}
 	}
+}
+
+#decor {
+  background-image: url(image_path("sign.jpg"));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+
 }

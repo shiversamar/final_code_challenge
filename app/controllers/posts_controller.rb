@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   # incrementing the database for new Post new cause i've started with out Author (user_id)
@@ -36,7 +37,7 @@ class PostsController < ApplicationController
 
 
   def update
-    if @post.update(post_params)
+    if @post.update(params[:post].permit(:title, :body))
       redirect_to post_path
     else
       render 'new'
@@ -45,8 +46,11 @@ class PostsController < ApplicationController
 
 
   def destroy
-  @post.destroy
-  redirect_to root_path
+    @post.destroy
+
+
+
+    redirect_to root_path
   end
 
 
@@ -55,7 +59,7 @@ class PostsController < ApplicationController
   private
       # Never trust parameters from the scary internet, only allow the white list through.
       def post_params
-        params.require(:post).permit(:title, :body)
+        params.require(:post).permit(:title, :body, :first_name, :last_name, :email)
       end
 
       # Use callbacks to share common setup or constraints between actions.
