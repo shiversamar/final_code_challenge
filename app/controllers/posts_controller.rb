@@ -4,26 +4,29 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.all.order("created_at DESC")
+    @posts = Post.all.order("created_at DESC").paginate(page:params[:page],per_page:5)
+    # @user = @post.current_user.posts.build
+    # @user = @post.users.find(params[:id])
   end
 
   def show
     @post = Post.find(params[:id])
   end
 
+
   # incrementing the database for new Post new cause i've started with out Author (user_id)
 
   def new
+    @post = Post.new(post_params)
     @post = current_user.posts.build
-    # @post = Post.new(post_params)
   end
 
 
 
   def create
-    @post = current_user.posts.build(post_params)
-    # @post = Post.new(post_params)
-    if @post.save
+    @post = Post.new(post_params)
+    if @post = current_user.posts.build(post_params)
+    elsif @post.save
       redirect_to root_path
     else
       render 'new'
@@ -46,10 +49,8 @@ class PostsController < ApplicationController
 
 
   def destroy
-    @post.destroy
-
-
-
+    @post = Post.find(params[:id])
+		@post.destroy
     redirect_to root_path
   end
 
